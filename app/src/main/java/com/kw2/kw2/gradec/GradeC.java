@@ -1,11 +1,13 @@
 package com.kw2.kw2.gradec;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.text.InputFilter;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -40,8 +42,12 @@ public class GradeC extends Activity {
         final TextView resultText = (TextView) findViewById(R.id.gradec_result);
 
         Button plsBtn = (Button) findViewById(R.id.gradec_plsBtn);
-        Button calBtn = (Button) findViewById(R.id.gradec_calBtn);
+        final Button calBtn = (Button) findViewById(R.id.gradec_calBtn);
         final Button saveBtn = (Button) findViewById(R.id.gradec_saveBtn);
+
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.gradec_radioG);
+
+
 
         String chkName, subName, scrName, grdName;
         int chkId, subId, scrId, grdId;
@@ -140,7 +146,38 @@ public class GradeC extends Activity {
             }
         });
 
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.gradec_radioG);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog cstDialog = new Dialog(GradeC.this);
+                cstDialog.setContentView(R.layout.dialog_save);
+                WindowManager.LayoutParams params = cstDialog.getWindow().getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                cstDialog.getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+
+                EditText recordName = (EditText) cstDialog.findViewById(R.id.save_nameEdit);
+                Button cancelBtn = (Button) cstDialog.findViewById(R.id.save_cancelBtn);
+                Button saveBtn = (Button) cstDialog.findViewById(R.id.save_saveBtn);
+
+                saveBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // 기록 insert 작업
+                    }
+                });
+
+                cancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cstDialog.dismiss();
+                    }
+                });
+
+                cstDialog.show();
+            }
+        });
+
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int checkedId) {
