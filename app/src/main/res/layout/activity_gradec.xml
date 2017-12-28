@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/gradec_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="학점계산기"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/gradec_maxGradeT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/gradec_title"
+        android:layout_alignTop="@id/gradec_title"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/gradec_title"
+        android:gravity="center"
+        android:text="만점 구분"
+        android:textColor="#000000" />
+
+    <RadioGroup
+        android:id="@+id/gradec_radioG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/gradec_title"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/gradec_title"
+        android:layout_toRightOf="@id/gradec_maxGradeT"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/gradec_4.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="4.5"/>
+
+        <RadioButton
+            android:id="@+id/gradec_4.3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.3"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/gradec_menuL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gradec_title"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="전공" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.8"
+            android:gravity="center"
+            android:text="과목명" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="점수" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="학점" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/gradec_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/gradec_menuL">
+
+        <LinearLayout
+            android:id="@+id/gradec_listMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/gradec_chk1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:id="@+id/gradec_sub1"
+                    android:layout_weight="1"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:id="@+id/gradec_scr1"
+                    android:entries="@array/grade5"
+                    />
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:id="@+id/gradec_grd1"
+                    android:layout_weight="0.3"
+                    android:inputType="number"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/gradec_chk2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:id="@+id/gradec_sub2"
+                    android:layout_weight="1"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:id="@+id/gradec_scr2"
+                    android:entries="@array/grade5"
+                    />
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:id="@+id/gradec_grd2"
+                    android:layout_weight="0.3"
+                    android:inputType="number"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/gradec_chk3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:id="@+id/gradec_sub3"
+                    android:layout_weight="1"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:id="@+id/gradec_scr3"
+                    android:entries="@array/grade5"
+                    />
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:id="@+id/gradec_grd3"
+                    android:layout_weight="0.3"
+                    android:inputType="number"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/gradec_chk4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:id="@+id/gradec_sub4"
+                    android:layout_weight="1"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:id="@+id/gradec_scr4"
+                    android:entries="@array/grade5"
+                    />
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:id="@+id/gradec_grd4"
+                    android:layout_weight="0.3"
+                    android:inputType="number"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/gradec_chk5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:id="@+id/gradec_sub5"
+                    android:layout_weight="1"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:id="@+id/gradec_scr5"
+                    android:entries="@array/grade5"
+                    />
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:id="@+id/gradec_grd5"
+                    android:layout_weight="0.3"
+                    android:inputType="number"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/gradec_chk6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:id="@+id/gradec_sub6"
+                    android:layout_weight="1"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:id="@+id/gradec_scr6"
+                    android:entries="@array/grade5"
+                    />
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:id="@+id/gradec_grd6"
+                    android:layout_weight="0.3"
+                    android:inputType="number"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/gradec_chk7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:id="@+id/gradec_sub7"
+                    android:layout_weight="1"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:id="@+id/gradec_scr7"
+                    android:entries="@array/grade5"
+                    />
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:id="@+id/gradec_grd7"
+                    android:layout_weight="0.3"
+                    android:inputType="number"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/gradec_chk8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:id="@+id/gradec_sub8"
+                    android:layout_weight="1"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:id="@+id/gradec_scr8"
+                    android:entries="@array/grade5"
+                    />
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:maxLength="2"
+                    android:id="@+id/gradec_grd8"
+                    android:layout_weight="0.3"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/gradec_btnL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gradec_scroll"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/gradec_plsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="과목 추가"/>
+        <Button
+            android:id="@+id/gradec_calBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="계산하기"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/gradec_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gradec_btnL"
+        android:text="총 평점: 0.00 전공평점: 0.00 \r\n이수학점: 0 전공이수: 0 "
+        android:textSize="20dp"/>
+    <Button
+        android:id="@+id/gradec_saveBtn"
+        android:text="기록하기"
+        android:enabled="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gradec_result"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>
