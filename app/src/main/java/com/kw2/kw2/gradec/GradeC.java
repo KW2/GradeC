@@ -26,13 +26,18 @@ import java.util.ArrayList;
 
 public class GradeC extends Activity {
     int nameNum;
-    boolean checked5;
+    boolean checked5, pass;
+
+    String recordName, majors, subjects, scores, grades, allGrade, majorGrade;
+    int allNum, majorNum;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gradec);
         nameNum = 8;
         checked5 = true;
+        pass =true;
         final ArrayList<CheckBox> array_chk = new ArrayList<>();
         final ArrayList<EditText> array_sub = new ArrayList<>();
         final ArrayList<Spinner> array_scr = new ArrayList<>();
@@ -104,7 +109,13 @@ public class GradeC extends Activity {
                 boolean majorChecked, scoreSelected, gradeInputed;
                 int majorInt = 0, allInt = 0, inputCheck = 0;
                 double mValue = 0, aValue = 0;
-                boolean pass = true;
+                pass = true;
+
+                // db값 설정용
+                majors = "";
+                subjects = "";
+                scores = "";
+                grades = "";
 
                 Loop : for(int j = 0; j< array_chk.size(); j++){
                     majorChecked = array_chk.get(j).isChecked();
@@ -115,9 +126,53 @@ public class GradeC extends Activity {
                         allInt = allInt + Integer.parseInt(array_grd.get(j).getText().toString());
                         mValue = mValue + ( getScore(array_scr.get(j).getSelectedItem().toString()) * Double.parseDouble(array_grd.get(j).getText().toString()));
                         aValue = aValue + ( getScore(array_scr.get(j).getSelectedItem().toString()) * Double.parseDouble(array_grd.get(j).getText().toString()));
+
+                        if(j != array_chk.size()-1) {
+                            majors = majors + "전공" + "@";
+                            if(array_sub.get(j).getText().toString().trim().equals("")){
+                                subjects = subjects + "공백" +"@";
+                            }else{
+                                subjects = subjects + array_sub.get(j).getText().toString() + "@";
+                            }
+                            scores = scores + array_scr.get(j).getSelectedItem().toString() + "@";
+                            grades = grades + array_grd.get(j).getText().toString() + "@";
+                        }else{
+                            // 리스트 마지막 항목
+                            majors = majors + "전공";
+                            if(array_sub.get(j).getText().toString().trim().equals("")){
+                                subjects = subjects + "공백";
+                            }else{
+                                subjects = subjects + array_sub.get(j).getText().toString();
+                            }
+                            scores = scores + array_scr.get(j).getSelectedItem().toString();
+                            grades = grades + array_grd.get(j).getText().toString();
+                        }
+
                     }else if( !majorChecked && scoreSelected && gradeInputed){
                         allInt = allInt + Integer.parseInt(array_grd.get(j).getText().toString());
                         aValue = aValue + ( getScore(array_scr.get(j).getSelectedItem().toString()) * Double.parseDouble(array_grd.get(j).getText().toString()));
+
+                        if(j != array_chk.size()-1) {
+                            majors = majors + "비전공" + "@";
+                            if(array_sub.get(j).getText().toString().trim().equals("")){
+                                subjects = subjects + "공백" +"@";
+                            }else{
+                                subjects = subjects + array_sub.get(j).getText().toString() + "@";
+                            }
+                            scores = scores + array_scr.get(j).getSelectedItem().toString() + "@";
+                            grades = grades + array_grd.get(j).getText().toString() + "@";
+                        }else{
+                            // 리스트 마지막 항목
+                            majors = majors + "전공";
+                            if(array_sub.get(j).getText().toString().trim().equals("")){
+                                subjects = subjects + "공백";
+                            }else{
+                                subjects = subjects + array_sub.get(j).getText().toString();
+                            }
+                            scores = scores + array_scr.get(j).getSelectedItem().toString();
+                            grades = grades + array_grd.get(j).getText().toString();
+                        }
+
                     }else if( scoreSelected && !gradeInputed){
                         Toast.makeText(GradeC.this, "학점 입력을 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
                         pass = false;
@@ -134,14 +189,22 @@ public class GradeC extends Activity {
                     Toast.makeText(GradeC.this, "입력사항을 다시 확인해주세요", Toast.LENGTH_SHORT).show();
                     pass = false;
                 }
+
                 if(pass) {
                     String majorStr = "0.00";
                     if (majorInt != 0) {
                         majorStr = String.format("%.2f", mValue / majorInt);
                     }
                     String allStr = String.format("%.2f", aValue / allInt);
+
+                    allGrade = allStr;
+                    majorGrade = majorStr;
+                    allNum = allInt;
+                    majorNum = majorInt;
+
                     resultText.setText("총 평점: " + allStr + " 전공 평점: " + majorStr + "\r\n" + "이수학점: " + allInt + " 전공이수: " + majorInt);
                     saveBtn.setEnabled(true);
+
                 }
             }
         });
@@ -149,32 +212,46 @@ public class GradeC extends Activity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog cstDialog = new Dialog(GradeC.this);
-                cstDialog.setContentView(R.layout.dialog_save);
-                WindowManager.LayoutParams params = cstDialog.getWindow().getAttributes();
-                params.width = WindowManager.LayoutParams.MATCH_PARENT;
-                params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-                cstDialog.getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+                calBtn.performClick();
 
-                EditText recordName = (EditText) cstDialog.findViewById(R.id.save_nameEdit);
-                Button cancelBtn = (Button) cstDialog.findViewById(R.id.save_cancelBtn);
-                Button saveBtn = (Button) cstDialog.findViewById(R.id.save_saveBtn);
+                if(pass) {
+                    final DBHelper helper = new DBHelper(GradeC.this);
+                    final Dialog cstDialog = new Dialog(GradeC.this);
+                    cstDialog.setContentView(R.layout.dialog_save);
+                    WindowManager.LayoutParams params = cstDialog.getWindow().getAttributes();
+                    params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                    params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                    cstDialog.getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
 
-                saveBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // 기록 insert 작업
-                    }
-                });
+                    final EditText recordEdit = (EditText) cstDialog.findViewById(R.id.save_nameEdit);
+                    Button cancelBtn = (Button) cstDialog.findViewById(R.id.save_cancelBtn);
+                    final Button recordSaveBtn = (Button) cstDialog.findViewById(R.id.save_saveBtn);
 
-                cancelBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        cstDialog.dismiss();
-                    }
-                });
+                    recordSaveBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // 기록 insert 작업
+                            if(recordEdit.getText().toString().trim().equals("")){
+                                Toast.makeText(GradeC.this, "기록명을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }else {
+                                recordName = recordEdit.getText().toString();
+                                helper.insertRecord(recordName, majors, subjects, scores, grades, allGrade, majorGrade, allNum, majorNum);
+                                Toast.makeText(GradeC.this, "기록 저장 완료", Toast.LENGTH_SHORT).show();
+                                saveBtn.setEnabled(false);
+                                cstDialog.dismiss();
+                            }
+                        }
+                    });
 
-                cstDialog.show();
+                    cancelBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            cstDialog.dismiss();
+                        }
+                    });
+
+                    cstDialog.show();
+                }
             }
         });
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/item_recordName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기록명"/>
+    <TextView
+        android:id="@+id/item_recordText"
+        android:layout_below="@id/item_recordName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="총점 0.00 이수학점 0"/>
+    <Button
+        android:id="@+id/item_deleteBtn"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="삭제"/>
+
+</RelativeLayout>

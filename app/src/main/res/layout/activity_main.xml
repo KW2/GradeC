@@ -18,7 +18,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="계산하기"
-        android:onClick="mainOnClick"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/main_title"
         />
@@ -27,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="기록보기"
-        android:onClick="mainOnClick"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/main_calBtn"
         />
@@ -36,7 +34,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="종료하기"
-        android:onClick="mainOnClick"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/main_viewBtn"
         />
