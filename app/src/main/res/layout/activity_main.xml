@@ -30,12 +30,20 @@
         android:layout_below="@id/main_calBtn"
         />
     <Button
+        android:id="@+id/main_tipBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="계산방법"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/main_viewBtn"
+        />
+    <Button
         android:id="@+id/main_endBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="종료하기"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/main_viewBtn"
+        android:layout_below="@id/main_tipBtn"
         />
 
 </RelativeLayout>

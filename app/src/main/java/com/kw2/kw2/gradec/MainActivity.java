@@ -18,10 +18,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button calBtn = (Button) findViewById(R.id.main_calBtn);
         Button viewBtn = (Button) findViewById(R.id.main_viewBtn);
+        Button tipBtn = (Button) findViewById(R.id.main_tipBtn);
         Button endBtn = (Button) findViewById(R.id.main_endBtn);
 
         calBtn.setOnClickListener(this);
         viewBtn.setOnClickListener(this);
+        tipBtn.setOnClickListener(this);
         endBtn.setOnClickListener(this);
     }
 
@@ -37,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_viewBtn:
                 // 기록보기 작업
                 intent = new Intent(getApplicationContext(), ViewList.class);
+                startActivity(intent);
+                break;
+            case R.id.main_tipBtn:
+                // 계산방법 설명
+                intent = new Intent(getApplicationContext(), Tip.class);
                 startActivity(intent);
                 break;
             case R.id.main_endBtn:

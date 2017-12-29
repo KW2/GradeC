@@ -31,6 +31,9 @@ public class ViewItem extends Activity {
 
 
         TableLayout layout = (TableLayout) findViewById(R.id.viewitem_layout);
+        TextView title = (TextView) findViewById(R.id.viewitem_recordName);
+
+        title.setText(recordName);
 
         String[] majors = major.split("@");
         String[] subjects = subject.split("@");
