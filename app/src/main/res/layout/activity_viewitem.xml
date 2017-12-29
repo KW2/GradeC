@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/viewitem_recordName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="기록명"
+        android:textSize="30dp" />
+
+    <ScrollView
+        android:id="@+id/viewItem_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewitem_recordName">
+
+        <TableLayout
+            android:id="@+id/viewitem_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="*">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="구분"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="과목명"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="점수"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="학점"
+                    android:textSize="20dp" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/viewitem_recordText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewItem_scroll"/>
+</RelativeLayout>

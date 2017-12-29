@@ -3,6 +3,7 @@ package com.kw2.kw2.gradec;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -56,7 +57,17 @@ public class ViewList extends Activity implements ListAdapter.ListBtnClickListen
             // 기록 선택 -> 기록 펼처 보기
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
+                Intent intent = new Intent(ViewList.this, ViewItem.class);
+                intent.putExtra("recordName", items.get(position).getRecordName());
+                intent.putExtra("majors", items.get(position).getMajors());
+                intent.putExtra("subjects", items.get(position).getSubjects());
+                intent.putExtra("scores", items.get(position).getScores());
+                intent.putExtra("grades", items.get(position).getGrades());
+                intent.putExtra("allGrade", items.get(position).getAllGrade());
+                intent.putExtra("majorGrade", items.get(position).getMajorGrade());
+                intent.putExtra("allNum", items.get(position).getAllNum());
+                intent.putExtra("majorNum", items.get(position).getMajorNum());
+                startActivity(intent);
             }
 
         });

@@ -19,6 +19,7 @@
 
         <activity android:name=".GradeC"></activity>
         <activity android:name=".ViewList"></activity>
+        <activity android:name=".ViewItem"></activity>
 
     </application>
 
