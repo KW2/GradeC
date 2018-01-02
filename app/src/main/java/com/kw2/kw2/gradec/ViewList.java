@@ -15,6 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -72,9 +75,12 @@ public class ViewList extends Activity implements ListAdapter.ListBtnClickListen
 
         });
         if(items.size() == 0){
-            blankText.setText("저장된 기록이 없습니다.");
+            blankText.setText("저장된 기록이 없습니다.\r\n\r\n기록은 계산 후 기록하기\r\n버튼을 통해 할 수 있습니다.");
         }
 
+        AdView mAdView = (AdView) findViewById(R.id.view_adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     public boolean loadDB(SQLiteDatabase db, ArrayList<ListViewItem> list) {
@@ -129,7 +135,7 @@ public class ViewList extends Activity implements ListAdapter.ListBtnClickListen
                                 }
                                 adapter.notifyDataSetChanged();
                                 if(items.size() == 0){
-                                    blankText.setText("저장된 기록이 없습니다.");
+                                    blankText.setText("저장된 기록이 없습니다.\r\n\r\n기록은 계산 후 기록하기\r\n버튼을 통해 할 수 있습니다.");
                                 }
 
                             }

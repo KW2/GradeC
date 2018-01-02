@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <com.beardedhen.androidbootstrap.BootstrapLabel
+        app:bootstrapBrand="info"
+        app:bootstrapHeading="h4"
         android:id="@+id/save_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -10,6 +14,12 @@
         android:textSize="30dp"
         android:gravity="center"
         android:layout_marginBottom="10dp"/>
+    <LinearLayout
+        android:id="@+id/save_linearT"
+        android:layout_below="@id/save_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <TextView
         android:id="@+id/save_nameText"
         android:layout_below="@id/save_title"
@@ -17,25 +27,28 @@
         android:layout_height="wrap_content"
         android:text="기록명: "
         android:textSize="30dp"
+        android:textColor="#000000"
         />
     <EditText
         android:id="@+id/save_nameEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/save_nameText"
-        android:layout_below="@id/save_title"
-        android:layout_alignParentRight="true"
-        android:layout_alignBaseline="@id/save_nameText"
+        android:textSize="30dp"
+        android:singleLine="true"
+        android:scrollHorizontally="false"
         />
+    </LinearLayout>
     <TextView
         android:layout_marginTop="20dp"
         android:id="@+id/save_tipText"
-        android:layout_below="@id/save_nameText"
+        android:layout_below="@id/save_linearT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="기록된 내용은 수정이 되지 않습니다. \r\n정확히 확인후 저장하세요."
-        android:textSize="20dp"/>
+        android:background="@color/bootstrap_brand_info"
+        android:text="기록된 내용은 수정이 되지 않습니다. \r\n정확히 확인 후 저장하세요."
+        android:textSize="20dp"
+        android:textColor="#000000"/>
 
     <LinearLayout
         android:layout_below="@id/save_tipText"
@@ -43,13 +56,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            app:bootstrapBrand="danger"
+            app:bootstrapSize="lg"
             android:id="@+id/save_cancelBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="취소"/>
-        <Button
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            app:bootstrapBrand="success"
+            app:bootstrapSize="lg"
             android:id="@+id/save_saveBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

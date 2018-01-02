@@ -1,51 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg">
 
-    <TextView
+    <com.beardedhen.androidbootstrap.BootstrapLabel
         android:id="@+id/viewitem_recordName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="기록명"
-        android:textSize="30dp" />
+        app:bootstrapBrand="info"
+        app:bootstrapHeading="h4"/>
 
     <ScrollView
         android:id="@+id/viewItem_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/viewitem_recordName">
+        android:layout_below="@id/viewitem_recordName"
+        android:background="#FFFFFF">
 
         <TableLayout
             android:id="@+id/viewitem_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:shrinkColumns="*">
+            android:shrinkColumns="1"
+            >
 
-            <TableRow>
+            <TableRow
+                android:background="#A2FFFF">
 
                 <TextView
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="구분"
+                    android:text=" 구분 "
+                    android:textColor="#000000"
                     android:textSize="20dp" />
 
                 <TextView
                     android:layout_weight="2"
                     android:gravity="center"
                     android:text="과목명"
+                    android:textColor="#000000"
                     android:textSize="20dp" />
 
                 <TextView
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="점수"
+                    android:text=" 점수 "
+                    android:textColor="#000000"
                     android:textSize="20dp" />
 
                 <TextView
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="학점"
+                    android:text=" 학점 "
+                    android:textColor="#000000"
                     android:textSize="20dp" />
             </TableRow>
 
@@ -55,7 +65,21 @@
     <TextView
         android:layout_marginTop="30dp"
         android:id="@+id/viewitem_recordText"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/viewItem_scroll"/>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/viewitem_adView"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adUnitId="@string/banner_viewitem"
+        ads:adSize="SMART_BANNER"
+        />
 </RelativeLayout>

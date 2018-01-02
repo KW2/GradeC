@@ -9,7 +9,6 @@ import android.text.InputFilter;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -17,6 +16,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
@@ -46,9 +49,9 @@ public class GradeC extends Activity {
         final LinearLayout listMain = (LinearLayout) findViewById(R.id.gradec_listMain);
         final TextView resultText = (TextView) findViewById(R.id.gradec_result);
 
-        Button plsBtn = (Button) findViewById(R.id.gradec_plsBtn);
-        final Button calBtn = (Button) findViewById(R.id.gradec_calBtn);
-        final Button saveBtn = (Button) findViewById(R.id.gradec_saveBtn);
+        BootstrapButton plsBtn = (BootstrapButton) findViewById(R.id.gradec_plsBtn);
+        final BootstrapButton calBtn = (BootstrapButton) findViewById(R.id.gradec_calBtn);
+        final BootstrapButton saveBtn = (BootstrapButton) findViewById(R.id.gradec_saveBtn);
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.gradec_radioG);
 
@@ -99,6 +102,7 @@ public class GradeC extends Activity {
                 nameNum++;
 
                 listMain.addView(itemL);
+                newSub.requestFocus();
             }
         });
 
@@ -130,7 +134,7 @@ public class GradeC extends Activity {
                         if(j != array_chk.size()-1) {
                             majors = majors + "전공" + "@";
                             if(array_sub.get(j).getText().toString().trim().equals("")){
-                                subjects = subjects + "공백" +"@";
+                                subjects = subjects + "미입력" +"@";
                             }else{
                                 subjects = subjects + array_sub.get(j).getText().toString() + "@";
                             }
@@ -140,7 +144,7 @@ public class GradeC extends Activity {
                             // 리스트 마지막 항목
                             majors = majors + "전공";
                             if(array_sub.get(j).getText().toString().trim().equals("")){
-                                subjects = subjects + "공백";
+                                subjects = subjects + "미입력";
                             }else{
                                 subjects = subjects + array_sub.get(j).getText().toString();
                             }
@@ -155,7 +159,7 @@ public class GradeC extends Activity {
                         if(j != array_chk.size()-1) {
                             majors = majors + "비전공" + "@";
                             if(array_sub.get(j).getText().toString().trim().equals("")){
-                                subjects = subjects + "공백" +"@";
+                                subjects = subjects + "미입력" +"@";
                             }else{
                                 subjects = subjects + array_sub.get(j).getText().toString() + "@";
                             }
@@ -163,9 +167,9 @@ public class GradeC extends Activity {
                             grades = grades + array_grd.get(j).getText().toString() + "@";
                         }else{
                             // 리스트 마지막 항목
-                            majors = majors + "전공";
+                            majors = majors + "비전공";
                             if(array_sub.get(j).getText().toString().trim().equals("")){
-                                subjects = subjects + "공백";
+                                subjects = subjects + "미입력";
                             }else{
                                 subjects = subjects + array_sub.get(j).getText().toString();
                             }
@@ -224,8 +228,8 @@ public class GradeC extends Activity {
                     cstDialog.getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
 
                     final EditText recordEdit = (EditText) cstDialog.findViewById(R.id.save_nameEdit);
-                    Button cancelBtn = (Button) cstDialog.findViewById(R.id.save_cancelBtn);
-                    final Button recordSaveBtn = (Button) cstDialog.findViewById(R.id.save_saveBtn);
+                    BootstrapButton cancelBtn = (BootstrapButton) cstDialog.findViewById(R.id.save_cancelBtn);
+                    final BootstrapButton recordSaveBtn = (BootstrapButton) cstDialog.findViewById(R.id.save_saveBtn);
 
                     recordSaveBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -233,6 +237,8 @@ public class GradeC extends Activity {
                             // 기록 insert 작업
                             if(recordEdit.getText().toString().trim().equals("")){
                                 Toast.makeText(GradeC.this, "기록명을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if(recordEdit.getText().toString().length() >= 16){
+                                Toast.makeText(GradeC.this, "기록명을 15자 이내로 입력해주세요.", Toast.LENGTH_SHORT).show();
                             }else {
                                 recordName = recordEdit.getText().toString();
                                 helper.insertRecord(recordName, majors, subjects, scores, grades, allGrade, majorGrade, allNum, majorNum);
@@ -279,18 +285,24 @@ public class GradeC extends Activity {
                 }
             }
         });
+
+        AdView mAdView = (AdView) findViewById(R.id.gradec_adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
 
     // 과목추가버튼 클릭시 추가 view 세팅
     public void setNewView(LinearLayout itemL, CheckBox newChk, EditText newSub, Spinner newScr, EditText newGrd){
         itemL.setOrientation(LinearLayout.HORIZONTAL);
+        itemL.setBackgroundResource(R.drawable.bottomline);
         itemL.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
         newChk.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.MATCH_PARENT));
 
         newSub.setLayoutParams(new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,1));
-        newSub.setMaxLines(2);
+        newSub.setSingleLine();
+        newSub.setHorizontallyScrolling(false);
 
         newScr.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,0.1f));
         if(checked5) {
@@ -305,7 +317,8 @@ public class GradeC extends Activity {
 
         newGrd.setLayoutParams(new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT,0.3f));
         newGrd.setInputType(0x00000002);
-        newGrd.setMaxLines(1);
+        newGrd.setSingleLine();
+        newGrd.setHorizontallyScrolling(false);
         newGrd.setFilters(new InputFilter[] { new InputFilter.LengthFilter(2) });
     }
 

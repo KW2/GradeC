@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bg">
 
     <TextView
         android:id="@+id/main_title"
@@ -10,40 +12,68 @@
         android:layout_height="wrap_content"
         android:text="간편 학점 계산기"
         android:textSize="50dp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/cstfbold"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
-         />
-    <Button
+        android:layout_marginTop="50dp"/>
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        app:bootstrapSize="xl"
+        app:roundedCorners="true"
+        app:bootstrapBrand="info"
         android:id="@+id/main_calBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="계산하기"
+        android:text="계산 하기"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/main_title"
+        android:layout_marginBottom="5dp"
         />
-    <Button
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        app:bootstrapSize="xl"
+        app:roundedCorners="true"
+        app:bootstrapBrand="info"
         android:id="@+id/main_viewBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="기록보기"
+        android:text="기록 보기"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/main_calBtn"
+        android:layout_marginBottom="5dp"
         />
-    <Button
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        app:bootstrapSize="xl"
+        app:roundedCorners="true"
+        app:bootstrapBrand="info"
         android:id="@+id/main_tipBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="계산방법"
+        android:text="계산 방법"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/main_viewBtn"
+        android:layout_marginBottom="5dp"
         />
-    <Button
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        app:bootstrapSize="xl"
+        app:roundedCorners="true"
+        app:bootstrapBrand="info"
         android:id="@+id/main_endBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="종료하기"
+        android:text="종료 하기"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/main_tipBtn"
         />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/main_adView"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adUnitId="@string/banner_main"
+        ads:adSize="SMART_BANNER"
+        />
+
 
 </RelativeLayout>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">간편 학점 계산기</string>
+    <string name="banner_main">ca-app-pub-2916712541842638/6714626985</string>
+    <string name="banner_gradec">ca-app-pub-2916712541842638/3545414458</string>
+    <string name="banner_viewlist">ca-app-pub-2916712541842638/1749117050</string>
+    <string name="banner_viewitem">ca-app-pub-2916712541842638/9208804675</string>
+    <string name="banner_tip">ca-app-pub-2916712541842638/5568942561</string>
 </resources>

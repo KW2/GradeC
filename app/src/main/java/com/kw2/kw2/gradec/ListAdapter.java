@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.*;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
+
+import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import java.util.ArrayList;
 
@@ -47,7 +49,7 @@ public class ListAdapter extends ArrayAdapter<ListViewItem> {
         TextView recordName = (TextView) convertView.findViewById(R.id.item_recordName);
         TextView recordText = (TextView) convertView.findViewById(R.id.item_recordText);
 
-        Button deleteBtn = (Button) convertView.findViewById(R.id.item_deleteBtn);
+        BootstrapButton deleteBtn = (BootstrapButton) convertView.findViewById(R.id.item_deleteBtn);
 
         recordName.setText(listViewItem.getRecordName());
         recordText.setText("총 평점: " + listViewItem.getAllGrade() + " 이수학점: " + listViewItem.getAllNum());
