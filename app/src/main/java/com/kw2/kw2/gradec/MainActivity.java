@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initClose(){
         CaulyAdInfo adInfo = new CaulyAdInfoBuilder("ofrYPAu2").build();       // CaulyAdInfo 생성, "CAULY"에 발급 ID 입력
-        closeAd =new CaulyCloseAd();                                        // CaulyCloseAd 생성
+        closeAd = new CaulyCloseAd();                                        // CaulyCloseAd 생성
         closeAd.setAdInfo(adInfo);                                         // CaulyAdView에 AdInfo 적용
         closeAd.setButtonText("아니요","네");                             // 버튼 텍스트 사용자 지정
         closeAd.setDescriptionText("종료 할까요?");                       // 질문 텍스트 사용자 지정
