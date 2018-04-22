@@ -100,7 +100,7 @@
     <ScrollView
         android:id="@+id/gradec_scroll"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="280dp"
         android:layout_below="@id/gradec_menuL">
 
         <LinearLayout
@@ -430,8 +430,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/cstfbold"
             app:bootstrapBrand="success"
-            app:bootstrapSize="lg"
             app:bootstrapText="과목추가 {ty_plus}"
             app:fontAwesomeIcon="fa_plus" />
 
@@ -440,8 +440,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/cstfbold"
             app:bootstrapBrand="primary"
-            app:bootstrapSize="lg"
             app:bootstrapText="계산하기 {ty_calculator}" />
 
     </LinearLayout>
@@ -450,7 +450,7 @@
         android:layout_marginTop="3dp"
         android:id="@+id/gradec_linearB"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/gradec_btnL"
         android:orientation="vertical">
 
@@ -466,12 +466,11 @@
 
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/gradec_saveBtn"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
             android:text="기록하기"
-            app:bootstrapSize="lg"
+            android:fontFamily="@font/cstfbold"
             app:bootstrapBrand="info"
             app:bootstrapText="기록하기 {fa_pencil}"
             />

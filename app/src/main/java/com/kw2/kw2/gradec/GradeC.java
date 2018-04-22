@@ -237,8 +237,8 @@ public class GradeC extends Activity {
                             // 기록 insert 작업
                             if(recordEdit.getText().toString().trim().equals("")){
                                 Toast.makeText(GradeC.this, "기록명을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                            }else if(recordEdit.getText().toString().length() >= 16){
-                                Toast.makeText(GradeC.this, "기록명을 15자 이내로 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if(recordEdit.getText().toString().length() >= 31){
+                                Toast.makeText(GradeC.this, "기록명을 30자 이내로 입력해주세요.", Toast.LENGTH_SHORT).show();
                             }else {
                                 recordName = recordEdit.getText().toString();
                                 helper.insertRecord(recordName, majors, subjects, scores, grades, allGrade, majorGrade, allNum, majorNum);
