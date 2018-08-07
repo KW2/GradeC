@@ -2,6 +2,7 @@ package com.kw2.kw2.gradec;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -37,6 +38,7 @@ public class GradeC extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_gradec);
         nameNum = 8;
         checked5 = true;
